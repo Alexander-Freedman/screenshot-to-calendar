@@ -119,19 +119,26 @@ needs zero manual calendar work.
    the skill calls.
 3. Install the **Claude** app on iPhone and sign into the same account.
 
-**Build the Shortcut (Shortcuts app):**
-1. Shortcuts app → **+** → new shortcut.
-2. Add **Receive [Images or Text] from Share Sheet** as the first action, so
-   it can run on both a screenshot and on plain relayed text.
-3. Add a **Share** action, and set its destination to the **Claude** app.
-   Sharing to Claude opens a new chat with the shared image (or text)
-   already attached.
-4. Name the shortcut (e.g. `ss-info`), and in its settings enable **Show in
-   Share Sheet** (restrict accepted types to Images + Text).
+**Get the Shortcut:**
+
+- **Download it:** [`shortcuts/ss-info.shortcut`](shortcuts/ss-info.shortcut)
+  — open that link on an iPhone (or AirDrop/save the file to your phone) and
+  tap it; iOS opens the Shortcuts app's import screen. Review the actions it
+  shows before adding it, same as with any shortcut you didn't build
+  yourself.
+- **Or build your own:**
+  1. Shortcuts app → **+** → new shortcut.
+  2. Add **Receive [Images or Text] from Share Sheet** as the first action,
+     so it can run on both a screenshot and on plain relayed text.
+  3. Add a **Share** action, and set its destination to the **Claude** app.
+     Sharing to Claude opens a new chat with the shared image (or text)
+     already attached.
+  4. Name the shortcut (e.g. `ss-info`), and in its settings enable **Show
+     in Share Sheet** (restrict accepted types to Images + Text).
 
 iOS sandboxes what a Shortcut can do inside another app's compose box, so
 the Shortcut can hand the image/text off to Claude, but can't also type and
-send the message for you — that's one extra tap.
+send the message for you — that's one extra tap either way.
 
 **Using it:**
 1. On a post or screenshot, tap **Share**.
@@ -185,6 +192,7 @@ template changes.
 ```
 README.md                  — this file
 skills/ss-info/SKILL.md     — the Claude skill template (source of truth for behavior)
+shortcuts/ss-info.shortcut  — the iPhone Shortcut, ready to import
 ```
 
 To change behavior (add a category, change reminder rules, point at a
