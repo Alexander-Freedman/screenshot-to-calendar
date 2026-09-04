@@ -1,12 +1,29 @@
 # screenshot-to-calendar
 
-Screenshot something on your phone — a flyer for an event, a scholarship
-post, an appointment reminder — send it to Claude tagged `/ss-info`, and it
-lands on the correct Google Calendar with no manual typing.
+**In short:** screenshot something on your phone — a flyer for an event, a
+scholarship post, an appointment — share it to Claude and add the tag
+`/ss-info`. Claude reads the screenshot, figures out what it is, and puts it
+on the right Google Calendar for you. No typing it in yourself.
+
+- 📸 See something worth remembering → screenshot it.
+- 📤 Share it to Claude, add `/ss-info`, hit send.
+- 📅 It shows up on your calendar a few seconds later, already sorted into
+  the right one (events vs. deadlines vs. appointments) — Claude will only
+  ask you a question if something's genuinely unclear (like a garbled date).
+
+That's the whole thing from a user's perspective. Everything below this
+point is for **setting it up** — you only need to read it once, and only if
+you're the one configuring it (not needed just to use it day-to-day).
 
 This repo is a **template**: the categories, calendar names, and workflow
 are examples to copy and adapt to your own calendars, not a fixed
 configuration. Nothing here is tied to a specific person's account.
+
+---
+
+## Setup guide (read once, then forget about it)
+
+### How it fits together
 
 ```
 Screenshot (Instagram / Photos / anywhere)
@@ -24,7 +41,7 @@ Screenshot (Instagram / Photos / anywhere)
   Event appears on the right calendar automatically
 ```
 
-## 1. How the calendar routing works
+### 1. How the calendar routing works
 
 The skill hard-codes where things go, so Claude isn't freehanding it. The
 example in this repo uses four categories — replace these with whatever
@@ -56,7 +73,7 @@ If a screenshot contains multiple dates (a full week's schedule, a
 recurring series), the skill creates one event per date, skipping anything
 already in the past.
 
-## 2. The Claude skill
+### 2. The Claude skill
 
 The logic above lives in [`skills/ss-info/SKILL.md`](skills/ss-info/SKILL.md)
 as a template. A Claude **Skill** is a standing instruction set attached to
@@ -84,9 +101,9 @@ Behaviorally, the skill is written to be biased toward *acting*, not asking:
   tagged `/ss-info` is treated as that confirmation. It reports back only
   **after** the event already exists, not as a pre-approval step.
 
-## 3. Setting it up on iPhone
+### 3. Setting it up on iPhone
 
-### Option A — Claude app (this is what the skill is built for)
+#### Option A — Claude app (this is what the skill is built for)
 
 This is the fully-automatic path: once the skill and the Google Calendar
 connector are both set up on your Claude account, anything sent this way
@@ -126,7 +143,7 @@ If what you're forwarding is already text (e.g. relayed from some other
 automation that already extracted a screenshot's contents), the same flow
 works — just make sure `/ss-info` is part of the message.
 
-### Option B — ChatGPT app (manual equivalent, no native skill support)
+#### Option B — ChatGPT app (manual equivalent, no native skill support)
 
 ChatGPT has no equivalent to a Claude Skill that auto-triggers on a tag, so
 this path is a hand-built approximation rather than a real port:
@@ -148,7 +165,7 @@ Treat this path as best-effort — it's only as reliable as the custom
 instructions pasted in, and needs to be kept in sync by hand if the skill
 template changes.
 
-## 4. Troubleshooting
+### 4. Troubleshooting
 
 - **Nothing happens** — the message has to contain the literal `/ss-info`
   text. An image alone only triggers the skill if it's unambiguously one of
@@ -163,7 +180,7 @@ template changes.
 - **A whole week's schedule only produced one event** — shouldn't happen;
   the skill is written to create one event per date.
 
-## 5. Repo layout
+### 5. Repo layout
 
 ```
 README.md                  — this file
