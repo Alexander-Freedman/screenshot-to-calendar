@@ -6,7 +6,8 @@ scholarship post, an appointment — share it to Claude and add the tag
 on the right Google Calendar for you. No typing it in yourself.
 
 - 📸 See something worth remembering → screenshot it.
-- 📤 Share it to Claude, add `/ss-info`, hit send.
+- 🕹️ Open Control Center and tap the `ss-info` shortcut (one tap, see
+  setup below for how to add it there).
 - 📅 It shows up on your calendar a few seconds later, already sorted into
   the right one (events vs. deadlines vs. appointments) — Claude will only
   ask you a question if something's genuinely unclear (like a garbled date).
@@ -27,9 +28,9 @@ configuration. Nothing here is tied to a specific person's account.
 
 ```
 Screenshot (Instagram / Photos / anywhere)
-        │  Share Sheet
+        │  tap the shortcut in Control Center
         ▼
-  An iOS Shortcut you build ("ss-info")
+  An iOS Shortcut ("ss-info")
         │  opens Claude (or ChatGPT) with the image + "/ss-info" tag
         ▼
   Claude reads the image, decides what it is
@@ -126,29 +127,38 @@ needs zero manual calendar work.
   tap it; iOS opens the Shortcuts app's import screen. Review the actions it
   shows before adding it, same as with any shortcut you didn't build
   yourself.
-- **Or build your own:**
-  1. Shortcuts app → **+** → new shortcut.
-  2. Add **Receive [Images or Text] from Share Sheet** as the first action,
-     so it can run on both a screenshot and on plain relayed text.
-  3. Add a **Share** action, and set its destination to the **Claude** app.
-     Sharing to Claude opens a new chat with the shared image (or text)
-     already attached.
-  4. Name the shortcut (e.g. `ss-info`), and in its settings enable **Show
-     in Share Sheet** (restrict accepted types to Images + Text).
+- **Or build your own** in the Shortcuts app: an action that grabs your most
+  recent screenshot, tags it with `/ss-info`, and hands it to the Claude app
+  (Shortcuts app → **+** → new shortcut → add a "Get Latest Screenshots"-type
+  action, then a **Share** action targeting **Claude**).
 
-iOS sandboxes what a Shortcut can do inside another app's compose box, so
-the Shortcut can hand the image/text off to Claude, but can't also type and
-send the message for you — that's one extra tap either way.
+**Add it to Control Center (one-time):**
+1. Open the **Settings** app → **Control Center**.
+2. Tap **Add a Control**.
+3. Find **Shortcut** in the list, tap it, then choose `ss-info` from your
+   shortcuts.
+4. Drag it into position if you want it somewhere specific, then close
+   Settings.
+
+(On older iOS versions that don't support adding an individual shortcut as
+its own control, add the general **Shortcuts** control instead — tapping it
+in Control Center opens your shortcuts list, where you tap `ss-info`.)
 
 **Using it:**
-1. On a post or screenshot, tap **Share**.
-2. Pick your shortcut — this hands the image to Claude in a new chat.
-3. Type `/ss-info` and send. The skill reports back once the event is
-   already on the calendar.
+1. Take a screenshot of whatever you want to save (a flyer, a scholarship
+   post, an appointment).
+2. Swipe down from the top-right corner to open Control Center, and tap the
+   `ss-info` icon.
+3. That's it — the shortcut grabs the screenshot, tags it `/ss-info`, and
+   sends it to Claude on its own. No need to open the app, find the
+   screenshot, or type anything.
+4. Claude reports back once the event is already on the calendar.
 
-If what you're forwarding is already text (e.g. relayed from some other
-automation that already extracted a screenshot's contents), the same flow
-works — just make sure `/ss-info` is part of the message.
+If you'd rather trigger it from the Share Sheet instead of Control Center
+(e.g. to forward something that isn't a screenshot), enable **Show in Share
+Sheet** in the shortcut's settings and share to it the normal way — you'll
+just need to type `/ss-info` yourself in that case, since the Share Sheet
+path doesn't auto-tag the message the way the Control Center trigger does.
 
 #### Option B — ChatGPT app (manual equivalent, no native skill support)
 
@@ -163,10 +173,11 @@ this path is a hand-built approximation rather than a real port:
    and hard-code your exact calendar names into the instructions, since
    there's no guarantee the GPT resolves calendar names the same safe way
    the Claude tool does.
-3. Reuse the same iPhone Shortcut, just pointing the **Share** action at
-   **ChatGPT** instead of Claude.
-4. Same manual step: type/paste `/ss-info` once ChatGPT opens with the
-   image.
+3. Duplicate the same iPhone Shortcut in the Shortcuts app, edit its
+   **Share** action to target **ChatGPT** instead of Claude, and add that
+   copy to Control Center the same way (see Option A above).
+4. Since ChatGPT's share extension doesn't auto-tag the message, you'll
+   need to type/paste `/ss-info` yourself once ChatGPT opens with the image.
 
 Treat this path as best-effort — it's only as reliable as the custom
 instructions pasted in, and needs to be kept in sync by hand if the skill
